@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRouter);
-app.use("/posts", posttable, postsRouter);
+app.use("/post", posttable, postsRouter);
 
 app.listen(5000, () => {
   try {
