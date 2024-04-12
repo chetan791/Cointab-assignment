@@ -21,7 +21,7 @@ userRouter.get("/", (req, res) => {
 userRouter.post("/Add", (req, res) => {
   const { id, name, email, phone, website, city, company } = req.body;
   try {
-    const query = `INSERT INTO users (id,name, email, phone, website, city, company, isAdded) VALUES (?, ?, ?, ?, ?, ? ,?, ?)`;
+    const query = `INSERT IGNORE INTO users (id,name, email, phone, website, city, company, isAdded) VALUES (?, ?, ?, ?, ?, ? ,?, ?)`;
 
     database.query(
       query,
