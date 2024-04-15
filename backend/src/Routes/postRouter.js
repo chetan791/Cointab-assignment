@@ -7,13 +7,11 @@ const { Op } = require('sequelize');
 postsRouter.get("/download/:userId", async (req, res) => {
   const { userId } = req.params;
   try {
-    // Retrieve posts for the specified user using Sequelize
     const posts = await Post.findAll({
       where: { userId: userId },
       attributes: ['userId', 'id', 'title', 'body'],
     });
 
-    // Create an Excel workbook and worksheet
     const workbook = new exceljs.Workbook();
     const worksheet = workbook.addWorksheet("Posts");
 
@@ -22,10 +20,8 @@ postsRouter.get("/download/:userId", async (req, res) => {
       worksheet.addRow([post.userId, post.id, post.title, post.body]);
     });
 
-    // Write the workbook to a buffer
     const buffer = await workbook.xlsx.writeBuffer();
 
-    // Send the buffer as a response
     res.set(
       "Content-Type",
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"

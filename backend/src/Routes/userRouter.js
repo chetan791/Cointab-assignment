@@ -4,12 +4,6 @@ const userRouter = express.Router();
 
 userRouter.get("/", async (req, res) => {
   try {
-    // const query = `SELECT * FROM users`;
-    // database.query(query, (err, result) => {
-    //   if (err) throw err;
-    //   res.send(result);
-    // });
-
     const users = await User.findAll();
     res.send("hello");
   } catch (error) {

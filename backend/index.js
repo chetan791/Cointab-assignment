@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRouter);
-app.use("/posts", postsRouter);
+app.use("/post", postsRouter);
 
 app.listen(5000, async () => {
   try {
