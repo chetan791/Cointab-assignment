@@ -31,7 +31,7 @@ userRouter.post("/Add", async (req, res) => {
     });
 
     if (created) {
-      res.status(200).send("User Added", user);
+      res.status(200).send("User Added");
     } else {
       res.status(200).send("User already exists");
     }

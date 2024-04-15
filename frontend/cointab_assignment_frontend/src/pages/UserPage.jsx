@@ -33,14 +33,11 @@ export const UserPage = () => {
       email: user.email,
       phone: user.phone,
       website: user.website,
-      address: {
-        city: user.address.city,
-      },
-      company: {
-        name: user.company.name,
-      },
+      city: user.address.city,
+      company: user.company.name,
       isAdded: true,
     };
+    console.log(data);
 
     const res = await axios.post(
       "https://cointab-assignment-fyak.onrender.com/user/Add",
