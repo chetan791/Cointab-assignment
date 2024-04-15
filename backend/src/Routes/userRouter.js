@@ -10,7 +10,7 @@ userRouter.get("/", async (req, res) => {
     //   res.send(result);
     // });
 
-    const users = await user.findAll();
+    const users = await User.findAll();
     res.send("hello");
   } catch (error) {
     console.log(error);
