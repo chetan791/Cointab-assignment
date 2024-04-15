@@ -1,9 +1,6 @@
 const express = require("express");
-const ensuretable = require("../middleware/table");
 const database = require("../config/DB");
 const userRouter = express.Router();
-
-userRouter.use(ensuretable);
 
 userRouter.get("/", (req, res) => {
   try {

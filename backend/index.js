@@ -3,14 +3,13 @@ const app = express();
 const cors = require("cors");
 const database = require("./src/config/DB");
 const userRouter = require("./src/Routes/userRouter");
-const posttable = require("./src/middleware/postTable");
 const postsRouter = require("./src/Routes/postRouter");
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRouter);
-app.use("/posts", posttable, postsRouter);
+app.use("/posts", postsRouter);
 
 app.listen(5000, () => {
   try {
