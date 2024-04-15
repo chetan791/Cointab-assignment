@@ -30,7 +30,7 @@ export const PostPage = () => {
   const addBulkPosts = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/posts/Add",
+        "https://cointab-assignment-fyak.onrender.com/post/Add",
         posts
       );
       // alert(response.data);
@@ -45,7 +45,7 @@ export const PostPage = () => {
   const downloadExcel = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/posts/download/${user.id}`,
+        `https://cointab-assignment-fyak.onrender.com/post/download/${user.id}`,
         {
           responseType: "blob",
         }

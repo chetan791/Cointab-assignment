@@ -42,7 +42,10 @@ export const UserPage = () => {
       isAdded: true,
     };
 
-    const res = await axios.post("http://localhost:5000/user/Add", data);
+    const res = await axios.post(
+      "https://cointab-assignment-fyak.onrender.com/user/Add",
+      data
+    );
 
     alert(res.data);
 

@@ -2,14 +2,14 @@ const express = require("express");
 const postsRouter = express.Router();
 const exceljs = require("exceljs");
 const Post = require("../model/post");
-const { Op } = require('sequelize');
+const { Op } = require("sequelize");
 
 postsRouter.get("/download/:userId", async (req, res) => {
   const { userId } = req.params;
   try {
     const posts = await Post.findAll({
       where: { userId: userId },
-      attributes: ['userId', 'id', 'title', 'body'],
+      attributes: ["userId", "id", "title", "body"],
     });
 
     const workbook = new exceljs.Workbook();
@@ -33,7 +33,6 @@ postsRouter.get("/download/:userId", async (req, res) => {
   }
 });
 
-
 postsRouter.get("/:userId", async (req, res) => {
   const { userId } = req.params;
   try {
@@ -48,18 +47,22 @@ postsRouter.get("/:userId", async (req, res) => {
   }
 });
 
-
 postsRouter.post("/Add", async (req, res) => {
   const posts = req.body;
   try {
-    await Post.bulkCreate(posts);
+    const createdPosts = await Post.bulkCreate(posts, {
+      ignoreDuplicates: true,
+    });
 
-    res.send("Posts added successfully");
+    if (createdPosts.length === 0) {
+      res.send("Posts already exist");
+    } else {
+      res.send("Posts added successfully");
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal server error: " + error.message);
   }
 });
-
 
 module.exports = postsRouter;
